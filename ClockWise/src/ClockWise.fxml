@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.timeclock.ClockWiseController"
+            stylesheets="@ClockWise.css">
+
+    <!-- ===== TOP NAVBAR ===== -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="navbar">
+            <padding>
+                <Insets top="10" bottom="10" left="20" right="20"/>
+            </padding>
+            <ImageView fitHeight="32" fitWidth="32" fx:id="logo" />
+            <Label text="ClockWise" styleClass="app-title"/>
+            <Pane HBox.hgrow="ALWAYS"/> <!-- Spacer -->
+            <Button fx:id="logoutBtn" text="Logout" styleClass="btn-outline"/>
+        </HBox>
+    </top>
+
+    <!-- ===== CENTER MAIN CONTENT ===== -->
+    <center>
+        <VBox alignment="CENTER" spacing="30" styleClass="main-content">
+            <Label fx:id="timeLabel" text="12:45:32 PM" styleClass="clock-text"/>
+            <HBox alignment="CENTER" spacing="20">
+                <Button fx:id="clockInBtn" text="Clock In" styleClass="btn-primary"/>
+                <Button fx:id="clockOutBtn" text="Clock Out" styleClass="btn-secondary"/>
+                <Button fx:id="mealBtn" text="Meal Break" styleClass="btn-neutral"/>
+            </HBox>
+
+            <!-- Recent Entries Table -->
+            <VBox spacing="10" styleClass="recent-entries">
+                <Label text="Recent Time Entries" styleClass="section-title"/>
+                <TableView fx:id="timeTable" prefHeight="200" styleClass="modern-table">
+                    <columns>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+                        <TableColumn fx:id="colAction" text="Action" prefWidth="150"/>
+                        <TableColumn fx:id="colTime" text="Time" prefWidth="150"/>
+                        <TableColumn fx:id="colDuration" text="Duration" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+
+    <!-- ===== BOTTOM FOOTER ===== -->
+    <bottom>
+        <HBox alignment="CENTER" styleClass="footer">
+            <Label text="© 2025 ClockWise | Time Tracking System"/>
+        </HBox>
+    </bottom>
+</BorderPane>
