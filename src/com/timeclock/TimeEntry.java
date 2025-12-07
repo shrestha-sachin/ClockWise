@@ -4,65 +4,50 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class TimeEntry {
+
+    private int id;
+    private int userId; 
     private final StringProperty date;
     private final StringProperty action;
     private final StringProperty time;
     private final StringProperty duration;
 
-    public TimeEntry(String date, String action, String time, String duration) {
+    // Constructor for creating NEW entries (no DB ID yet)
+    public TimeEntry(int userId, String date, String action, String time, String duration) {
+        this(-1, userId, date, action, time, duration);
+    }
+
+    // Constructor for loading entries FROM DB
+    public TimeEntry(int id, int userId, String date, String action, String time, String duration) {
+        this.id = id;
+        this.userId = userId;
         this.date = new SimpleStringProperty(date);
         this.action = new SimpleStringProperty(action);
         this.time = new SimpleStringProperty(time);
-        this.duration = new SimpleStringProperty(duration);
+        this.duration = new SimpleStringProperty(duration == null ? "-" : duration);
     }
 
-    // Property getters (required for TableView binding)
-    public StringProperty dateProperty() {
-        return date;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public StringProperty actionProperty() {
-        return action;
-    }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 
-    public StringProperty timeProperty() {
-        return time;
-    }
+    // --- Property Accessors (Required for JavaFX TableView) ---
+    public StringProperty dateProperty() { return date; }
+    public StringProperty actionProperty() { return action; }
+    public StringProperty timeProperty() { return time; }
+    public StringProperty durationProperty() { return duration; }
 
-    public StringProperty durationProperty() {
-        return duration;
-    }
+    // --- Standard Getters ---
+    public String getDate() { return date.get(); }
+    public String getAction() { return action.get(); }
+    public String getTime() { return time.get(); }
+    public String getDuration() { return duration.get(); }
 
-    // Regular getters and setters
-    public String getDate() {
-        return date.get();
-    }
-
-    public void setDate(String date) {
-        this.date.set(date);
-    }
-
-    public String getAction() {
-        return action.get();
-    }
-
-    public void setAction(String action) {
-        this.action.set(action);
-    }
-
-    public String getTime() {
-        return time.get();
-    }
-
-    public void setTime(String time) {
-        this.time.set(time);
-    }
-
-    public String getDuration() {
-        return duration.get();
-    }
-
-    public void setDuration(String duration) {
-        this.duration.set(duration);
-    }
+    // --- Setters ---
+    public void setDate(String v) { date.set(v); }
+    public void setAction(String v) { action.set(v); }
+    public void setTime(String v) { time.set(v); }
+    public void setDuration(String v) { duration.set(v); }
 }

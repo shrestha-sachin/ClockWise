@@ -8,6 +8,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Javafx25"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/sqlite"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX25"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
