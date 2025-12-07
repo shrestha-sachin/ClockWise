@@ -1,6 +1,5 @@
 package com.timeclock;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -8,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Duration;
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +17,7 @@ public class ClockWiseController {
     @FXML private Label timeLabel;
     @FXML private Label dateLabel;
     @FXML private Label todayHoursLabel;
-    @FXML private Label userNameLabel; // New Label
+    @FXML private Label userNameLabel;
     @FXML private Button clockInBtn;
     @FXML private Button clockOutBtn;
     @FXML private Button mealBtn;
@@ -34,7 +32,6 @@ public class ClockWiseController {
     private LocalTime clockInTime = null;         
     private long totalMealBreakMinutes = 0;
     private LocalTime mealBreakStartTime = null;
-    private String currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     private long todayTotalWorkMinutes = 0;
     private boolean isClockedIn = false;
     private boolean isOnMealBreak = false;
@@ -99,7 +96,7 @@ public class ClockWiseController {
     private void startClock() {
         if (clockTimeline != null) clockTimeline.stop();
         clockTimeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateDateTime()));
-        clockTimeline.setCycleCount(Animation.INDEFINITE);
+        clockTimeline.setCycleCount(Timeline.INDEFINITE);
         clockTimeline.play();
         updateDateTime(); 
     }
@@ -145,11 +142,11 @@ public class ClockWiseController {
         clockOutBtn.setDisable(!isClockedIn);
         mealBtn.setDisable(!isClockedIn);
         if (isOnMealBreak) {
-            mealBtn.setText("⏹ END BREAK");
-            mealBtn.setStyle("-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20; -fx-background-radius: 8; -fx-cursor: hand;");
+            mealBtn.setText("END BREAK");
+            mealBtn.setStyle("-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20;");
         } else {
-            mealBtn.setText("☕ MEAL BREAK");
-            mealBtn.setStyle("-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20; -fx-background-radius: 8; -fx-cursor: hand;");
+            mealBtn.setText("MEAL BREAK");
+            mealBtn.setStyle("-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 20;");
         }
     }
 

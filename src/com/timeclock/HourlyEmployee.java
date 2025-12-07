@@ -12,7 +12,6 @@ public class HourlyEmployee extends Employee {
 
     @Override
     public double getMonthlyCost() {
-        // Estimate: Rate * 40 hours/week * 4 weeks
         return hourlyRate * 160;
     }
 }
